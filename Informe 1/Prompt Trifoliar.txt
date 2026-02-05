@@ -1,0 +1,69 @@
+Necesito que hagas un trifoliar tipo guía rápida basado en un video donde se explica qué es una computadora, sus partes principales y cómo realizar un mantenimiento básico y preventivo a una laptop.
+
+El trifoliar debe estar dirigido a personas sin conocimientos técnicos avanzados, por lo que la información debe ser clara, sencilla y fácil de entender. No debe usar lenguaje muy técnico ni explicar componentes demasiado específicos.
+
+Incluye de forma resumida qué es una computadora y para qué sirve en la vida diaria, como estudiar, trabajar, comunicarse y almacenar información. Explica de manera simple las partes principales: motherboard, procesador (CPU), memoria RAM, disco duro o SSD y fuente de poder, indicando brevemente la función de cada una.
+
+Menciona las herramientas básicas de mantenimiento, como aire comprimido, alcohol isopropílico, paños suaves, brochas o pinceles, destornilladores Philips y recipientes para tornillos, explicando de forma sencilla para qué sirve cada una.
+
+Agrega una sección amplia sobre los pasos del mantenimiento preventivo, incluyendo muchos pasos claros y ordenados, por ejemplo:
+
+Guardar archivos importantes antes de iniciar
+
+Apagar correctamente la computadora
+
+Desconectar el cargador y otros dispositivos
+
+Retirar la batería si el modelo lo permite
+
+Trabajar en una superficie limpia y plana
+
+Descargar la electricidad estática tocando una superficie metálica
+
+Identificar y retirar los tornillos adecuados
+
+Guardar los tornillos por separado para no perderlos
+
+Abrir la carcasa con cuidado y sin forzar
+
+Retirar polvo superficial con brocha o pincel
+
+Usar aire comprimido en ventiladores y ranuras
+
+Limpiar el teclado por la parte interna y externa
+
+Limpiar puertos USB, HDMI y de carga
+
+Retirar la memoria RAM con cuidado
+
+Limpiar los contactos de la RAM con alcohol isopropílico
+
+Retirar el disco duro o SSD si es necesario
+
+Revisar que no haya cables flojos
+
+Limpiar el ventilador y rejillas de ventilación
+
+Secar bien cualquier zona limpiada con alcohol
+
+Volver a colocar todos los componentes en su lugar
+
+Cerrar la carcasa correctamente
+
+Colocar los tornillos sin apretarlos demasiado
+
+Conectar la batería y el cargador
+
+Encender el equipo y comprobar que funcione correctamente
+
+Incluye una sección de recomendaciones de seguridad, como no usar agua, no forzar piezas, trabajar con paciencia, no tocar los componentes con las manos mojadas y asegurarse de que todo esté bien conectado antes de encender la laptop.
+
+Agrega al final o en la contraportada los datos del estudiante:
+
+Nombre: Jeremy Isaí Hernández Girón
+
+Carnet: 202400818
+
+El contenido debe estar dividido en seis caras, usando títulos simples, viñetas y textos cortos, pensado como una guía rápida.
+
+El diseño debe verse ordenado, profesional y visualmente atractivo, con colores suaves, buena distribución del texto, íconos relacionados con computadoras y sin saturar de información.
