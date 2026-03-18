@@ -1,9 +1,10 @@
-// ============================================================
-// Autor: Jeremy Hernandez
-// Curso: Practicas Iniciales
-// PROYECTO USAC — Backend API
-// Descripción: API REST para manejo de usuarios, publicaciones,
-// ============================================================
+// ╔══════════════════════════════════════════════════════════════╗                                          
+// ║Autor: Jeremy Hernandez                                       ║
+// ║Curso: Practicas Iniciales                                    ║
+// ║PROYECTO USAC — Backend API                                   ║
+// ║Descripción: API REST para manejo de usuarios, publicaciones, ║
+// ╚══════════════════════════════════════════════════════════════╝
+
 
 const express  = require('express');
 const cors     = require('cors');
@@ -20,7 +21,7 @@ const SECRET = 'clave_super_secreta_demo';
 app.use(cors());
 app.use(express.json()); // Permite recibir JSON en las peticiones
 
-// CONEXIÓN A BASE DE DATOS (MySQL)
+// --- [CONEXIÓN A BASE DE DATOS (MySQL) ] ---
 
 const db = mysql.createPool({
   host: 'localhost',
@@ -29,7 +30,8 @@ const db = mysql.createPool({
   database: 'informe4_web'
 });
 
-// MIDDLEWARE PARA VALIDAR TOKEN JWT
+// --- [ MIDDLEWARE PARA VALIDAR TOKEN JWT ] ---
+
 // Este middleware protege las rutas que requieren login
 
 function verificarToken(req, res, next) {
@@ -49,7 +51,7 @@ function verificarToken(req, res, next) {
   }
 }
 
-// AUTENTICACIÓN (REGISTRO / LOGIN / RECUPERACIÓN)
+// >>>>>>>>>>>>>>>>> AUTENTICACIÓN (REGISTRO / LOGIN / RECUPERACIÓN) <<<<<<<<<<<<<<<<<
 // Registrar usuario nuevo
 app.post('/api/auth/registro', async (req, res) => {
   const { registro, nombres, apellidos, correo, contrasena } = req.body;
@@ -154,9 +156,7 @@ app.post('/api/auth/recuperar', async (req, res) => {
   }
 });
 
-// ============================================================
-// USUARIOS
-// ============================================================
+// >>>>>>>>>>>>>>>>> USUARIOS <<<<<<<<<<<<<<<<<
 
 // Editar perfil
 app.put('/api/usuarios/:id', verificarToken, async (req, res) => {
@@ -197,9 +197,7 @@ app.get('/api/usuarios/:registro', verificarToken, async (req, res) => {
   }
 });
 
-// ============================================================
-// CURSOS APROBADOS
-// ============================================================
+// >>>>>>>>>>>>>>>>> CURSOS APROBADOS <<<<<<<<<<<<<<<<<
 
 // Agregar curso aprobado al usuario
 app.post('/api/cursos-aprobados', verificarToken, async (req, res) => {
@@ -251,9 +249,8 @@ app.get('/api/usuarios/:id/cursos-aprobados', verificarToken, async (req, res) =
   }
 });
 
-// ============================================================
-// PUBLICACIONES Y FILTROS
-// ============================================================
+
+// >>>>>>>>>>>>>>>>> PUBLICACIONES Y FILTROS <<<<<<<<<<<<<<<<<
 
 app.get('/api/publicaciones', verificarToken, async (req, res) => {
   const { nombre_curso, nombre_catedratico } = req.query;
@@ -317,10 +314,8 @@ app.post('/api/publicaciones', verificarToken, async (req, res) => {
   }
 });
 
-// ============================================================
-// COMENTARIOS
-// ============================================================
 
+// >>>>>>>>>>>>>>>>> COMENTARIOS <<<<<<<<<<<<<<<<<
 // Obtener comentarios de una publicación
 app.get('/api/publicaciones/:id/comentarios', verificarToken, async (req, res) => {
   const [rows] = await db.execute(
@@ -347,9 +342,7 @@ app.post('/api/publicaciones/:id/comentarios', verificarToken, async (req, res) 
   res.status(201).json({ id: result.insertId });
 });
 
-// ============================================================
-// CATÁLOGOS
-// ============================================================
+// >>>>>>>>>>>>>>>>> CATÁLOGOS <<<<<<<<<<<<<<<<<
 
 // Listar cursos
 app.get('/api/cursos', verificarToken, async (req, res) => {
