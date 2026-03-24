@@ -2,7 +2,7 @@ import { useState } from "react";
 import API from "../api/api";
 import { useNavigate } from "react-router-dom";
 
-function Login() {
+function Login({ setAuth }) {
   const [registro, setRegistro] = useState("");
   const [contrasena, setContrasena] = useState("");
   const navigate = useNavigate();
@@ -14,35 +14,26 @@ function Login() {
         contrasena
       });
 
-      // 🔥 guardar token
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("usuario", JSON.stringify(res.data.usuario));
 
-      alert("Login correcto ✅");
-
-      // 🔥 redirigir
+      setAuth(true);
       navigate("/feed");
 
-    } catch (err) {
-      console.error(err);
+    } catch {
       alert("Credenciales incorrectas ❌");
     }
   };
 
   return (
-    <div>
+    <div className="container">
       <h2>Login</h2>
 
-      <input
-        placeholder="Registro"
-        onChange={e => setRegistro(e.target.value)}
-      />
+      <input placeholder="Registro" onChange={e => setRegistro(e.target.value)} />
+      <br /><br />
 
-      <input
-        type="password"
-        placeholder="Contraseña"
-        onChange={e => setContrasena(e.target.value)}
-      />
+      <input type="password" placeholder="Contraseña" onChange={e => setContrasena(e.target.value)} />
+      <br /><br />
 
       <button onClick={login}>Ingresar</button>
     </div>

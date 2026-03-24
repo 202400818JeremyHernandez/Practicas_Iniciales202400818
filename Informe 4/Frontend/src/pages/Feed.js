@@ -11,8 +11,7 @@ function Feed() {
     try {
       const res = await API.get(`/publicaciones?nombre_curso=${filtro}`);
       setPosts(res.data);
-    } catch (err) {
-      console.error(err);
+    } catch {
       alert("Error cargando publicaciones");
     }
   };
@@ -22,10 +21,9 @@ function Feed() {
   }, []);
 
   return (
-    <div>
+    <div className="container">
       <h1>Feed 🔥</h1>
 
-      {/* 🔍 FILTRO */}
       <input
         placeholder="Buscar por curso"
         onChange={e => setFiltro(e.target.value)}
@@ -33,39 +31,24 @@ function Feed() {
 
       <button onClick={cargarPublicaciones}>Filtrar</button>
 
-      {/* ➕ CREAR PUBLICACIÓN */}
       <CrearPublicacion recargar={cargarPublicaciones} />
 
-      {/* 📭 SIN DATOS */}
-      {posts.length === 0 ? (
-        <p>No hay publicaciones</p>
-      ) : (
-        posts.map(p => (
-          <div
-            key={p.id}
-            style={{
-              border: "1px solid black",
-              margin: "10px",
-              padding: "10px"
-            }}
-          >
-            {/* 👤 USUARIO */}
-            <h4>{p.nombres} {p.apellidos}</h4>
+      {posts.map(p => (
+        <div key={p.id} style={{
+          background: "white",
+          padding: "15px",
+          marginTop: "15px",
+          borderRadius: "8px",
+          boxShadow: "0px 2px 5px rgba(0,0,0,0.1)"
+        }}>
+          <h4>{p.nombres} {p.apellidos}</h4>
+          <p>{p.mensaje}</p>
+          <small>{p.referencia_nombre}</small>
+          <p>Comentarios: {p.total_comentarios}</p>
 
-            {/* 💬 MENSAJE */}
-            <p>{p.mensaje}</p>
-
-            {/* 📚 REFERENCIA */}
-            <small>{p.referencia_nombre}</small>
-
-            {/* 💬 TOTAL */}
-            <p>Comentarios: {p.total_comentarios}</p>
-
-            {/* 💬 COMPONENTE DE COMENTARIOS */}
-            <Comentarios id={p.id} />
-          </div>
-        ))
-      )}
+          <Comentarios id={p.id} />
+        </div>
+      ))}
     </div>
   );
 }

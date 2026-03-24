@@ -25,13 +25,14 @@ function Comentarios({ id }) {
       <h4>Comentarios</h4>
 
       {comentarios.map(c => (
-        <p key={c.id}>{c.nombres}: {c.mensaje}</p>
+        <p key={c.id}><b>{c.nombres}:</b> {c.mensaje}</p>
       ))}
 
       <input
         value={mensaje}
         onChange={e => setMensaje(e.target.value)}
       />
+
       <button onClick={comentar}>Comentar</button>
     </div>
   );

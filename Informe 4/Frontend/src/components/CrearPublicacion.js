@@ -27,22 +27,25 @@ function CrearPublicacion({ recargar }) {
   };
 
   return (
-    <div>
+    <div style={{
+      background: "white",
+      padding: "10px",
+      marginTop: "10px",
+      borderRadius: "8px"
+    }}>
       <h3>Crear publicación</h3>
 
-      {/* SELECT DE CURSOS */}
       <select onChange={e => setCursoId(e.target.value)}>
         <option value="">Seleccione curso</option>
         {cursos.map(c => (
-          <option key={c.id} value={c.id}>
-            {c.nombre}
-          </option>
+          <option key={c.id} value={c.id}>{c.nombre}</option>
         ))}
       </select>
 
       <br />
 
       <textarea
+        style={{width: "100%", height: "60px"}}
         value={mensaje}
         onChange={e => setMensaje(e.target.value)}
       />
