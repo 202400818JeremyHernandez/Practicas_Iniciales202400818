@@ -1,14 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import API from "../api/api";
 
 function CrearPublicacion({ recargar }) {
   const [mensaje, setMensaje] = useState("");
+  const [cursos, setCursos] = useState([]);
+  const [cursoId, setCursoId] = useState("");
+
+  useEffect(() => {
+    API.get("/cursos").then(res => setCursos(res.data));
+  }, []);
 
   const crear = async () => {
     try {
       await API.post("/publicaciones", {
         tipo: "curso",
-        referencia_id: 1,
+        referencia_id: cursoId,
         mensaje
       });
 
@@ -16,17 +22,31 @@ function CrearPublicacion({ recargar }) {
       setMensaje("");
       recargar();
     } catch {
-      alert("Error al publicar ❌");
+      alert("Error ❌");
     }
   };
 
   return (
     <div>
       <h3>Crear publicación</h3>
+
+      {/* SELECT DE CURSOS */}
+      <select onChange={e => setCursoId(e.target.value)}>
+        <option value="">Seleccione curso</option>
+        {cursos.map(c => (
+          <option key={c.id} value={c.id}>
+            {c.nombre}
+          </option>
+        ))}
+      </select>
+
+      <br />
+
       <textarea
         value={mensaje}
         onChange={e => setMensaje(e.target.value)}
       />
+
       <button onClick={crear}>Publicar</button>
     </div>
   );
