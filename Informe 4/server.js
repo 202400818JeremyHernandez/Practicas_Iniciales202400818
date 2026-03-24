@@ -256,7 +256,7 @@ app.get('/api/publicaciones', verificarToken, async (req, res) => {
   const { nombre_curso, nombre_catedratico } = req.query;
 
   let query = `
-    SELECT p.*, u.nombres, u.apellidos,
+    SELECT p.*, u.nombres, u.apellidos, u.registro,
            COALESCE(cu.nombre, ca.nombre) AS referencia_nombre,
            COUNT(co.id) AS total_comentarios
     FROM publicaciones p
@@ -318,16 +318,20 @@ app.post('/api/publicaciones', verificarToken, async (req, res) => {
 // >>>>>>>>>>>>>>>>> COMENTARIOS <<<<<<<<<<<<<<<<<
 // Obtener comentarios de una publicación
 app.get('/api/publicaciones/:id/comentarios', verificarToken, async (req, res) => {
-  const [rows] = await db.execute(
-    `SELECT c.*, u.nombres
-     FROM comentarios c
-     JOIN usuarios u ON c.usuario_id = u.id
-     WHERE c.publicacion_id = ?
-     ORDER BY c.creado_en ASC`,
-    [req.params.id]
-  );
+  try {
+    const [rows] = await db.execute(
+      `SELECT c.*, u.nombres, u.registro
+       FROM comentarios c
+       JOIN usuarios u ON c.usuario_id = u.id
+       WHERE c.publicacion_id = ?
+       ORDER BY c.creado_en ASC`,
+      [req.params.id]
+    );
 
-  res.json(rows);
+    res.json(rows);
+  } catch {
+    res.status(500).json({ error: 'Error al obtener comentarios' });
+  }
 });
 
 // Agregar comentario
