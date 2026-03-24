@@ -1,9 +1,11 @@
 import { useState } from "react";
 import API from "../api/api";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [registro, setRegistro] = useState("");
   const [contrasena, setContrasena] = useState("");
+  const navigate = useNavigate();
 
   const login = async () => {
     try {
@@ -12,10 +14,18 @@ function Login() {
         contrasena
       });
 
+      // 🔥 guardar token
       localStorage.setItem("token", res.data.token);
-      alert("Login correcto");
-    } catch {
-      alert("Error");
+      localStorage.setItem("usuario", JSON.stringify(res.data.usuario));
+
+      alert("Login correcto ✅");
+
+      // 🔥 redirigir
+      navigate("/feed");
+
+    } catch (err) {
+      console.error(err);
+      alert("Credenciales incorrectas ❌");
     }
   };
 
@@ -23,8 +33,16 @@ function Login() {
     <div>
       <h2>Login</h2>
 
-      <input placeholder="Registro" onChange={e => setRegistro(e.target.value)} />
-      <input type="password" placeholder="Contraseña" onChange={e => setContrasena(e.target.value)} />
+      <input
+        placeholder="Registro"
+        onChange={e => setRegistro(e.target.value)}
+      />
+
+      <input
+        type="password"
+        placeholder="Contraseña"
+        onChange={e => setContrasena(e.target.value)}
+      />
 
       <button onClick={login}>Ingresar</button>
     </div>
