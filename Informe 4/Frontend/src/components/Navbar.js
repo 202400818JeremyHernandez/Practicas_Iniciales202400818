@@ -13,21 +13,20 @@ function Navbar({ setAuth }) {
   const btn = {
     margin: "5px",
     padding: "8px",
-    border: "none",
-    background: "#3498db",
+    background: "#5865f2",
     color: "white",
     borderRadius: "5px",
-    cursor: "pointer"
+    border: "none"
   };
 
   return (
     <div style={{
       display: "flex",
       justifyContent: "space-between",
-      background: "#2c3e50",
-      padding: "10px"
+      background: "#111827",
+      padding: "12px"
     }}>
-      <div style={{color: "white"}}>Mi Red USAC</div>
+      <div style={{color: "#fff", fontWeight: "bold"}}>Mi Red USAC 🌙</div>
 
       <div>
         <button onClick={() => navigate("/feed")} style={btn}>Feed</button>

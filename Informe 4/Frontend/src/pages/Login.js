@@ -27,15 +27,41 @@ function Login({ setAuth }) {
 
   return (
     <div className="container">
-      <h2>Login</h2>
+      <div className="card" style={{maxWidth: "400px", margin: "auto"}}>
+        
+        <h2 style={{textAlign: "center"}}>Iniciar Sesión 🔐</h2>
 
-      <input placeholder="Registro" onChange={e => setRegistro(e.target.value)} />
-      <br /><br />
+        <input
+          placeholder="Registro"
+          onChange={e => setRegistro(e.target.value)}
+        />
 
-      <input type="password" placeholder="Contraseña" onChange={e => setContrasena(e.target.value)} />
-      <br /><br />
+        <input
+          type="password"
+          placeholder="Contraseña"
+          onChange={e => setContrasena(e.target.value)}
+        />
 
-      <button onClick={login}>Ingresar</button>
+        <button onClick={login} style={{width: "100%", marginTop: "10px"}}>
+          Ingresar
+        </button>
+
+        <hr />
+
+        {/* 🔥 BOTÓN REGISTRO */}
+        <p style={{textAlign: "center"}}>¿No tienes cuenta?</p>
+
+        <button
+          onClick={() => navigate("/registro")}
+          style={{
+            width: "100%",
+            background: "#22c55e"
+          }}
+        >
+          Registrarse
+        </button>
+
+      </div>
     </div>
   );
 }

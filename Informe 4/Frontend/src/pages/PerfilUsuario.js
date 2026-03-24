@@ -1,44 +1,39 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import API from "../api/api";
 
-function Perfil() {
+function PerfilUsuario() {
+  const { registro } = useParams();
+
   const [user, setUser] = useState({});
   const [creditos, setCreditos] = useState(0);
 
-  const usuario = JSON.parse(localStorage.getItem("usuario"));
-
-  // 🔥 cargar perfil
   const cargarPerfil = async () => {
-    const res = await API.get(`/usuarios/${usuario.registro}`);
+    const res = await API.get(`/usuarios/${registro}`);
     setUser(res.data);
-  };
 
-  // 🔥 cargar créditos
-  const cargarCreditos = async () => {
-    const res = await API.get(`/usuarios/${usuario.id}/cursos-aprobados`);
-    setCreditos(res.data.total_creditos);
+    // 🔥 obtener créditos con id
+    const res2 = await API.get(`/usuarios/${res.data.id}/cursos-aprobados`);
+    setCreditos(res2.data.total_creditos);
   };
 
   useEffect(() => {
     cargarPerfil();
-    cargarCreditos();
   }, []);
 
   return (
     <div className="container">
-      <h2>Perfil 👤</h2>
+      <h2>Perfil Usuario 👤</h2>
 
       <div className="card">
         <h3>{user.nombres} {user.apellidos}</h3>
 
         <p><b>Registro:</b> {user.registro}</p>
         <p><b>Correo:</b> {user.correo}</p>
-
-        {/* 🔥 NUEVO */}
-        <p><b>Créditos aprobados:</b> {creditos}</p>
+        <p><b>Créditos:</b> {creditos}</p>
       </div>
     </div>
   );
 }
 
-export default Perfil;
+export default PerfilUsuario;

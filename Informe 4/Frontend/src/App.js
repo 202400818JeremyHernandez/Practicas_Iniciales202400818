@@ -6,6 +6,8 @@ import Perfil from "./pages/Perfil";
 import Cursos from "./pages/Cursos";
 import Navbar from "./components/Navbar";
 import "./App.css";
+import Registro from "./pages/Registro";
+import PerfilUsuario from "./pages/PerfilUsuario";
 
 function App() {
   const [auth, setAuth] = useState(!!localStorage.getItem("token"));
@@ -20,6 +22,8 @@ function App() {
         <Route path="/feed" element={<Feed />} />
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/cursos" element={<Cursos />} />
+        <Route path="/registro" element={<Registro />} />
+        <Route path="/usuario/:registro" element={<PerfilUsuario />} />
       </Routes>
 
     </BrowserRouter>

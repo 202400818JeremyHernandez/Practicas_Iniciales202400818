@@ -8,29 +8,23 @@ function Cursos() {
 
   const usuario = JSON.parse(localStorage.getItem("usuario"));
 
-  // 🔥 cargar cursos aprobados
   const cargarAprobados = async () => {
     const res = await API.get(`/usuarios/${usuario.id}/cursos-aprobados`);
     setData(res.data);
   };
 
-  // 🔥 cargar todos los cursos disponibles
   const cargarCursos = async () => {
     const res = await API.get("/cursos");
     setTodosCursos(res.data);
   };
 
-  // 🔥 agregar curso aprobado
   const agregarCurso = async () => {
     try {
-      await API.post("/cursos-aprobados", {
-        curso_id: cursoId
-      });
-
+      await API.post("/cursos-aprobados", { curso_id: cursoId });
       alert("Curso agregado ✅");
       cargarAprobados();
-    } catch (err) {
-      alert("Error o curso ya agregado ❌");
+    } catch {
+      alert("Error o ya agregado ❌");
     }
   };
 
@@ -40,31 +34,35 @@ function Cursos() {
   }, []);
 
   return (
-    <div>
+    <div className="container">
       <h2>Cursos Aprobados 🎓</h2>
 
-      {/* SELECT */}
-      <select onChange={e => setCursoId(e.target.value)}>
-        <option value="">Seleccione curso</option>
-        {todosCursos.map(c => (
-          <option key={c.id} value={c.id}>
-            {c.nombre}
-          </option>
+      <div className="card">
+        <h3>Agregar Curso</h3>
+
+        <select onChange={e => setCursoId(e.target.value)}>
+          <option value="">Seleccione curso</option>
+          {todosCursos.map(c => (
+            <option key={c.id} value={c.id}>{c.nombre}</option>
+          ))}
+        </select>
+
+        <button onClick={agregarCurso}>Agregar</button>
+      </div>
+
+      <div className="card">
+        <h3>Mis Cursos</h3>
+
+        {data.cursos.map(c => (
+          <p key={c.id}>
+            {c.nombre} — {c.creditos} créditos
+          </p>
         ))}
-      </select>
 
-      <button onClick={agregarCurso}>Agregar</button>
+        <hr />
 
-      <hr />
-
-      {/* LISTA */}
-      {data.cursos.map(c => (
-        <p key={c.id}>
-          {c.nombre} ({c.creditos} créditos)
-        </p>
-      ))}
-
-      <h3>Total créditos: {data.total_creditos}</h3>
+        <h3>Total: {data.total_creditos} créditos</h3>
+      </div>
     </div>
   );
 }

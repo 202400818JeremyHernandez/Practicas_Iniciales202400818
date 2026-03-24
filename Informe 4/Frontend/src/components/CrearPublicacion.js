@@ -27,12 +27,7 @@ function CrearPublicacion({ recargar }) {
   };
 
   return (
-    <div style={{
-      background: "white",
-      padding: "10px",
-      marginTop: "10px",
-      borderRadius: "8px"
-    }}>
+    <div className="card">
       <h3>Crear publicación</h3>
 
       <select onChange={e => setCursoId(e.target.value)}>
